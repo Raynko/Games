@@ -1,0 +1,130 @@
+/* Importation des polices */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Rubik');
+
+/* Réinitialisation des styles par défaut */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(82, 61, 85);
+    font-family: 'Rubik', sans-serif;
+}
+
+.header {
+    user-select: none;
+    border-bottom: 2px solid rgb(29, 73, 114);
+}
+
+.header-contents {
+    padding: 10px;
+    background-color: rgb(7, 9, 14);
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 30px;
+    height: 30px;
+    margin-left: 30px;
+    pointer-events: none; 
+}   
+
+.header-title {
+    color: white;
+    font-size: 26px;
+    margin-left: 10px;
+}
+
+.header-desc {
+    color: rgb(251, 255, 0);
+    font-size: 15px;
+    margin-left: 10px;
+    font-family: Montserrat, sans-serif;
+}
+
+#games-container {
+    padding: 20px;
+    font-family: Montserrat, sans-serif;
+}
+
+#games-container {
+    padding-top: 120px;
+}
+.catalog-contents {
+    margin: 0 auto; /* Centrer horizontalement */
+    padding: 20px; /* Ajoute une marge intérieure de 20px */
+    background-color: rgba(0, 0, 0, 0.45);
+    max-width: 810px; /* Limite la largeur totale */
+    border-radius: 5px; /* Ajoute des coins arrondis */
+}
+
+.catalog-title {
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    user-select: none;
+}
+
+.seperator {
+    margin: 10px 0;
+    border: 1px solid rgb(255, 255, 255);
+}
+
+.games-list {
+    display: flex; /* Place les cartes côte à côte */
+    flex-wrap: wrap; /* Permet de passer à la ligne si nécessaire */
+    gap: 20px; /* Ajoute un espace de 20px entre les cartes */
+    justify-content: left; /* Centre les cartes horizontalement */
+    padding: 20px; /* Ajoute une marge intérieure */
+    background-color: rgba(255, 255, 255, 0.164);
+    max-width: 800px; /* Limite la largeur totale */
+    border-radius: 5px; /* Ajoute des coins arrondis */
+}
+
+.game-card-item {
+    width: 130px; /* Largeur fixe */
+    height: 75px; /* Hauteur fixe */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(191, 202, 231);
+    background-color: rgb(21, 28, 46);
+    border-radius: 5px; /* Ajoute des coins arrondis */
+    margin: 0; /* Supprime les marges inutiles */
+    flex-shrink: 0; /* Empêche les cartes de rétrécir */
+    border: 2px solid rgb(29, 73, 114); /* Bordure de 5px */
+}
+
+.game-card-item:hover {
+    color: white;
+    background-color: rgb(29, 73, 114);
+    cursor: pointer;
+}
+
+.game-name {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center; /* Centre le texte dans la carte */
+    user-select: none;
+}
+
+.loading-message {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px auto;
+    font-family: Rubik, sans-serif;
+}
+
+.empty-message {
+    color: white;
+    font-size: 14px;
+    text-align: center;
+    margin: 20px auto;
+    font-family: Rubik, sans-serif;
+}
