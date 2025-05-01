@@ -26,13 +26,6 @@ body {
     align-items: center;
 }
 
-.logo {
-    width: 30px;
-    height: 30px;
-    margin-left: 30px;
-    pointer-events: none; 
-}   
-
 .header-title {
     color: white;
     font-size: 26px;
@@ -46,20 +39,42 @@ body {
     font-family: Montserrat, sans-serif;
 }
 
-#games-container {
-    padding: 20px;
-    font-family: Montserrat, sans-serif;
+.logo {
+    height: auto; /* Permet de s'adapter à la taille du texte */
+    font-size: 80px; /* Augmente la taille de l'emoji */
+    text-align: center; /* Centre le texte horizontalement */
+    display: flex; /* Utilisé pour centrer avec flexbox */
+    justify-content: center; /* Centre horizontalement */
+    align-items: center; /* Centre verticalement */
+    margin: 70px 0; /* Ajoute un espace autour */
+    user-select: none; /* Empêche la sélection avec la souris */
+}
+
+/* Appliquer l'effet de gigotement au survol du logo */
+.logo:hover {
+    animation: wiggle 0.3s ease-in-out; /* Durée et type d'animation */
+    cursor: pointer; /* Change le curseur pour indiquer une interactivité */
+}
+
+/* Appliquer l'effet de rétrécissement au clic sur le logo */
+.logo:active {
+    animation: shrink 0.2s ease-in-out; /* Durée et type d'animation */
+    cursor: pointer; /* Change le curseur pour indiquer une interactivité */
 }
 
 #games-container {
-    padding-top: 120px;
+    padding: 20px;
+    font-family: Montserrat, sans-serif;
+    
 }
+
 .catalog-contents {
     margin: 0 auto; /* Centrer horizontalement */
     padding: 20px; /* Ajoute une marge intérieure de 20px */
     background-color: rgba(0, 0, 0, 0.45);
     max-width: 810px; /* Limite la largeur totale */
     border-radius: 5px; /* Ajoute des coins arrondis */
+    box-shadow: rgba(0, 0, 0, 0.37) 0px 2px 4px 0px, rgba(255, 255, 255, 0.11) 0px 2px 16px 0px;
 }
 
 .catalog-title {
@@ -67,11 +82,13 @@ body {
     font-size: 22px;
     font-weight: bold;
     user-select: none;
+    margin-bottom: -5px;
 }
 
 .seperator {
-    margin: 10px 0;
-    border: 1px solid rgb(255, 255, 255);
+    margin: 20px 0;
+    border: 3px solid rgb(255, 255, 255);
+    border-radius: 5px; /* Ajoute des coins arrondis */
 }
 
 .games-list {
@@ -83,6 +100,17 @@ body {
     background-color: rgba(255, 255, 255, 0.164);
     max-width: 800px; /* Limite la largeur totale */
     border-radius: 5px; /* Ajoute des coins arrondis */
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 4px 0px, rgba(0, 0, 0, 0.32) 0px 2px 16px 0px;
+}
+
+.game-card-link {
+    display: block; /* Permet au lien de couvrir toute la carte */
+    text-decoration: none; /* Supprime le soulignement */
+    color: inherit; /* Hérite de la couleur du texte */
+}
+
+.game-card-link:hover {
+    text-decoration: none; /* Assure qu'il n'y a pas de soulignement au survol */
 }
 
 .game-card-item {
@@ -91,18 +119,45 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: rgb(191, 202, 231);
-    background-color: rgb(21, 28, 46);
+    color: rgb(66, 49, 12);
+    background-color: rgb(184, 158, 119);
     border-radius: 5px; /* Ajoute des coins arrondis */
     margin: 0; /* Supprime les marges inutiles */
     flex-shrink: 0; /* Empêche les cartes de rétrécir */
-    border: 2px solid rgb(29, 73, 114); /* Bordure de 5px */
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 4px 0px, rgba(0, 0, 0, 0.32) 0px 2px 16px 0px;
+    cursor: pointer; /* Change le curseur pour indiquer une interactivité */
 }
 
+/* Ajout de l'animation pour le gigotement */
+@keyframes wiggle {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(3deg); }
+    50% { transform: rotate(0deg); }
+    75% { transform: rotate(-3deg); }
+    100% { transform: rotate(0deg); }
+}
+
+/* Appliquer l'effet au survol */
 .game-card-item:hover {
-    color: white;
-    background-color: rgb(29, 73, 114);
-    cursor: pointer;
+    animation: wiggle 0.3s ease-in-out; /* Durée et type d'animation */
+    cursor: pointer; /* Change le curseur pour indiquer une interactivité */
+    color: rgb(221, 209, 182);
+    background-color: rgb(163, 142, 110);
+    text-decoration: solid underline 4px; /* Ajoute un soulignement au survol */
+
+}
+
+/* Ajout de l'animation pour le rétrécissement */
+@keyframes shrink {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.9); } /* Rétrécit légèrement */
+    100% { transform: scale(1); } /* Retourne à la taille normale */
+}
+
+/* Appliquer l'effet au clic */
+.game-card-item:active {
+    animation: shrink 0.2s ease-in-out; /* Durée et type d'animation */
+    cursor: pointer; /* Change le curseur pour indiquer une interactivité */
 }
 
 .game-name {

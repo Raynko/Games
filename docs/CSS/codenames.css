@@ -1,0 +1,69 @@
+#rooms-container {
+    padding: 20px;
+    padding-top: 100px;
+    font-family: Montserrat, sans-serif;
+}
+
+.rooms-contents {
+    margin: 0 auto; /* Centrer horizontalement */
+    padding: 20px; /* Ajoute une marge intérieure de 20px */
+    background-color: rgba(0, 0, 0, 0.45);
+    max-width: 810px; /* Limite la largeur totale */
+    border-radius: 5px; /* Ajoute des coins arrondis */
+    box-shadow: rgba(0, 0, 0, 0.37) 0px 2px 4px 0px, rgba(255, 255, 255, 0.11) 0px 2px 16px 0px;
+}
+
+.rooms-title {
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    user-select: none;
+    margin-bottom: 20px;
+}
+
+.rooms-list {
+    display: flex; /* Place les cartes côte à côte */
+    flex-wrap: wrap; /* Permet de passer à la ligne si nécessaire */
+    gap: 20px; /* Ajoute un espace de 20px entre les cartes */
+    justify-content: left; /* Centre les cartes horizontalement */
+    padding: 20px; /* Ajoute une marge intérieure */
+    background-color: rgba(255, 255, 255, 0.164);
+    max-width: 800px; /* Limite la largeur totale */
+    border-radius: 5px; /* Ajoute des coins arrondis */
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 4px 0px, rgba(0, 0, 0, 0.32) 0px 2px 16px 0px;
+}
+
+.room-card-item {
+    width: 75px; /* Largeur fixe */
+    height: 75px; /* Hauteur fixe */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(66, 49, 12);
+    background-color: rgb(184, 158, 119);
+    border-radius: 5px; /* Ajoute des coins arrondis */
+    margin: 0; /* Supprime les marges inutiles */
+    flex-shrink: 0; /* Empêche les cartes de rétrécir */
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 4px 0px, rgba(0, 0, 0, 0.32) 0px 2px 16px 0px;
+    cursor: pointer; /* Change le curseur pour indiquer une interactivité */
+}
+
+/* Appliquer l'effet au survol */
+.room-card-item:hover {
+    cursor: pointer; /* Change le curseur pour indiquer une interactivité */
+    color: rgb(221, 209, 182);
+    background-color: rgb(163, 142, 110);
+}
+
+/* Appliquer l'effet au clic */
+.room-card-item:active {
+    animation: shrink 0.2s ease-in-out; /* Durée et type d'animation */
+    cursor: pointer; /* Change le curseur pour indiquer une interactivité */
+}
+
+.room-name {
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center; /* Centre le texte dans la carte */
+    user-select: none;
+}
