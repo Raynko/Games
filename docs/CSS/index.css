@@ -1,185 +1,546 @@
-/* Importation des polices */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Rubik');
+@import url('https://fonts.googleapis.com/css2?family=Boogaloo&family=Nunito:wght@400;700;800;900&family=Fredoka+One&display=swap');
 
-/* Réinitialisation des styles par défaut */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* ============================= */
+/* VARIABLES */
+/* ============================= */
+:root {
+  --yellow:    #FFD93D;
+  --orange:    #FF6B35;
+  --pink:      #FF4D8B;
+  --blue:      #4ECDC4;
+  --purple:    #A855F7;
+  --green:     #6BCB77;
+  --dark:      #1A1A2E;
+  --darker:    #0F0F1A;
+  --ink:       #1A1A2E;
+  --white:     #FFFDF4;
+  --cream:     #FFF9E6;
+
+  --head-color: #505674;
+  --head-pattern-dark: #163857;
+  --head-pattern-size: 32px;
+
+  --border:    4px solid var(--ink);
+  --radius:    16px;
+  --radius-lg: 24px;
+  --shadow:    6px 6px 0px var(--ink);
+  --shadow-sm: 4px 4px 0px var(--ink);
+  --shadow-lg: 8px 8px 0px var(--ink);
+
+  --font-display: 'Fredoka One', cursive;
+  --font-body:    'Nunito', sans-serif;
+  --font-fun:     'Boogaloo', cursive;
+
+  /* rotation */
+  --bg-rotation: -22deg;
+
+  /* espacement du grand motif */
+  --pattern-x: 120px;
+  --pattern-y: 80px;
+
+  /* décalage du motif */
+  --pattern-offset-x: 60px;
+  --pattern-offset-y: 40px;
+
+  /* taille des croix (longueur des branches) */
+  --cross-x: 60px;
+  --cross-y: 40px;
+
+  /* épaisseur des branches */
+  --cross-thickness: 8px;
+
+  /* petits offsets pour alignement */
+  --cross-offset: -4px;
+
+  /* couleurs */
+  --bg-color: #fff9e6;
+  --cross-color: #f7edc4;
 }
 
+/* ============================= */
+/* RESET */
+/* ============================= */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ============================= */
+/* BODY */
+/* ============================= */
 body {
-    background-color: rgb(82, 61, 85);
-    font-family: 'Rubik', sans-serif;
+  font-family: var(--font-body);
+  background-color: var(--cream);
+  min-height: 100vh;
+  color: var(--ink);
+  position: relative;
+  overflow-x: hidden;
 }
 
+@keyframes move-bg {
+  from { transform: rotate(var(--bg-rotation)) translate(0, 0); }
+  to   { transform: rotate(var(--bg-rotation)) translate(var(--pattern-x), var(--pattern-y)); }
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: -50%; 
+  z-index: -1;
+
+  background:
+    radial-gradient(circle, transparent 20%, var(--bg-color) 20%, var(--bg-color) 80%, transparent 80%, transparent)
+      0 0 / var(--pattern-x) var(--pattern-y),
+
+    radial-gradient(circle, transparent 20%, var(--bg-color) 20%, var(--bg-color) 80%, transparent 80%, transparent)
+      var(--pattern-offset-x) var(--pattern-offset-y) / var(--pattern-x) var(--pattern-y),
+
+    linear-gradient(var(--cross-color) var(--cross-thickness), transparent var(--cross-thickness))
+      0 var(--cross-offset) / var(--cross-x) var(--cross-y),
+
+    linear-gradient(90deg, var(--cross-color) var(--cross-thickness), var(--bg-color) var(--cross-thickness))
+      var(--cross-offset) 0 / var(--cross-x) var(--cross-y)
+
+    var(--bg-color);
+
+  transform: rotate(var(--bg-rotation));
+  animation: move-bg 10s linear infinite;
+}
+
+/* ============================= */
+/* HEADER */
+/* ============================= */
 .header {
-    user-select: none;
-    border-bottom: 2px solid rgb(29, 73, 114);
+  background: var(--dark);
+  border-bottom: var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  overflow: hidden;
+}
+
+.header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-conic-gradient(
+        from 45deg,
+        var(--head-pattern-dark) 0% 25%,
+        var(--head-color) 0% 50%
+    );
+
+    background-size: var(--head-pattern-size) var(--head-pattern-size);
+    background-color: var(--head-color);
 }
 
 .header-contents {
-    padding: 10px;
-    background-color: rgb(7, 9, 14);
-    display: flex;
-    align-items: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+  max-width: 960px;
+  margin: auto;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-icon {
+  font-size: 28px;
+  animation: float 3s ease-in-out infinite;
 }
 
 .header-title {
-    color: white;
-    font-size: 26px;
-    margin-left: 10px;
+  font-family: var(--font-display);
+  font-size: 26px;
+  color: var(--yellow);
+  letter-spacing: 1px;
+  -webkit-text-stroke: 1px rgba(0,0,0,0.2);
 }
 
-.header-desc {
-    color: rgb(251, 255, 0);
-    font-size: 15px;
-    margin-left: 10px;
-    font-family: Montserrat, sans-serif;
+.header-badge {
+  font-family: var(--font-fun);
+  font-size: 13px;
+  background: var(--pink);
+  color: white;
+  padding: 3px 10px;
+  padding-bottom: 5px;
+  border-radius: 999px;
+  border: 2px solid var(--ink);
+  box-shadow: 2px 2px 0 var(--ink);
+  letter-spacing: 0.5px;
+}
+
+.header-stars {
+  display: flex;
+  gap: 4px;
+  font-size: 18px;
+}
+
+/* ============================= */
+/* HERO */
+/* ============================= */
+.hero {
+  text-align: center;
+  padding: 60px 20px 40px;
+  position: relative;
+}
+
+.hero-bg-shapes {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.shape {
+  position: absolute;
+
+  border-radius: 50%;
+  opacity: 0.12;
+}
+.shape-1 { width: 300px; height: 300px; background: var(--yellow); top: -80px; left: -60px; animation: spin 20s linear infinite; }
+.shape-2 { width: 200px; height: 200px; background: var(--pink); top: 20px; right: -40px; animation: spin 15s linear infinite reverse; }
+.shape-3 { width: 120px; height: 120px; background: var(--blue); bottom: 0; left: 40%; animation: float 5s ease-in-out infinite; }
+
+.logo-container {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 16px;
 }
 
 .logo {
-    height: auto; /* Permet de s'adapter à la taille du texte */
-    font-size: 80px; /* Augmente la taille de l'emoji */
-    text-align: center; /* Centre le texte horizontalement */
-    display: flex; /* Utilisé pour centrer avec flexbox */
-    justify-content: center; /* Centre horizontalement */
-    align-items: center; /* Centre verticalement */
-    margin: 70px 0; /* Ajoute un espace autour */
-    user-select: none; /* Empêche la sélection avec la souris */
+  font-size: 100px;
+  display: block;
+  filter: drop-shadow(4px 4px 0px rgba(0,0,0,0.3));
+  animation: float 3s ease-in-out infinite;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.1s;
 }
 
-/* Appliquer l'effet de gigotement au survol du logo */
 .logo:hover {
-    animation: wiggle 0.3s ease-in-out; /* Durée et type d'animation */
-    cursor: pointer; /* Change le curseur pour indiquer une interactivité */
+  animation: wiggle 0.4s ease-in-out;
 }
 
-/* Appliquer l'effet de rétrécissement au clic sur le logo */
 .logo:active {
-    animation: shrink 0.2s ease-in-out; /* Durée et type d'animation */
-    cursor: pointer; /* Change le curseur pour indiquer une interactivité */
+  transform: scale(0.9);
+  animation: none;
 }
 
+.logo-ring {
+  position: absolute;
+  inset: -16px;
+  border: 5px dashed var(--blue);
+  border-radius: 50%;
+  opacity: 0.5;
+  animation: spin 8s linear infinite;
+  pointer-events: none;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 8vw, 72px);
+  color: var(--dark);
+  line-height: 1;
+  letter-spacing: 2px;
+}
+
+.hero-title span {
+  color: var(--orange);
+  display: inline-block;
+  animation: float 2.5s ease-in-out infinite;
+}
+
+.hero-title span:nth-child(2) { animation-delay: 0.2s; color: var(--pink); }
+.hero-title span:nth-child(3) { animation-delay: 0.4s; color: var(--blue); }
+.hero-title span:nth-child(4) { animation-delay: 0.6s; color: var(--purple); }
+
+.hero-sub {
+  font-family: var(--font-fun);
+  font-size: 20px;
+  color: #666;
+  margin-top: 10px;
+  letter-spacing: 1px;
+}
+/* ============================= */
+/* STATS BAR */
+/* ============================= */
+.stats-bar {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 0 20px 40px;
+}
+
+.stat-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--dark);
+  color: var(--white);
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: rgb(46, 129, 129) 5px solid;
+  font-family: var(--font-fun);
+  font-size: 15px;
+  transform: rotate(-1deg);
+  transition: transform 0.2s;
+  cursor: pointer;
+  user-select: none;
+}
+
+.stat-pill:nth-child(2) { transform: rotate(1deg); }
+.stat-pill:nth-child(3) { transform: rotate(-0.5deg); }
+
+.stat-pill:hover {
+  transform: rotate(0deg) translateY(-3px);
+}
+
+.stat-pill .stat-icon { font-size: 18px; }
+.stat-pill .stat-val { color: var(--yellow); font-weight: bold; }
+
+/* ============================= */
+/* CATALOG */
+/* ============================= */
 #games-container {
-    padding: 20px;
-    font-family: Montserrat, sans-serif;
-    
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 20px 80px;
 }
 
-.catalog-contents {
-    margin: 0 auto; /* Centrer horizontalement */
-    padding: 20px; /* Ajoute une marge intérieure de 20px */
-    background-color: rgba(0, 0, 0, 0.45);
-    max-width: 810px; /* Limite la largeur totale */
-    border-radius: 5px; /* Ajoute des coins arrondis */
-    box-shadow: rgba(0, 0, 0, 0.37) 0px 2px 4px 0px, rgba(255, 255, 255, 0.11) 0px 2px 16px 0px;
+.catalog-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
 }
 
 .catalog-title {
-    color: white;
-    font-size: 22px;
-    font-weight: bold;
-    user-select: none;
-    margin-bottom: -5px;
+  font-family: var(--font-display);
+  font-size: 32px;
+  color: var(--dark);
+  letter-spacing: 1px;
 }
 
-.seperator {
-    margin: 20px 0;
-    border: 3px solid rgb(255, 255, 255);
-    border-radius: 5px; /* Ajoute des coins arrondis */
+.catalog-title-pill {
+  background: var(--yellow);
+  border: var(--border);
+  border-radius: 999px;
+  padding: 4px 14px;
+  font-family: var(--font-fun);
+  font-size: 14px;
+  user-select: none;
 }
 
+.catalog-divider {
+  width: 100%;
+  height: 4px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--ink) 0px, var(--ink) 20px,
+    transparent 20px, transparent 30px
+  );
+  border-radius: 4px;
+  margin-bottom: 28px;
+  opacity: 0.2;
+}
+
+/* ============================= */
+/* GAMES LIST */
+/* ============================= */
 .games-list {
-    display: flex; /* Place les cartes côte à côte */
-    flex-wrap: wrap; /* Permet de passer à la ligne si nécessaire */
-    gap: 20px; /* Ajoute un espace de 20px entre les cartes */
-    justify-content: left; /* Centre les cartes horizontalement */
-    padding: 20px; /* Ajoute une marge intérieure */
-    background-color: rgba(255, 255, 255, 0.164);
-    max-width: 800px; /* Limite la largeur totale */
-    border-radius: 5px; /* Ajoute des coins arrondis */
-    box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 4px 0px, rgba(0, 0, 0, 0.32) 0px 2px 16px 0px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 24px;
 }
 
+/* ============================= */
+/* GAME CARD */
+/* ============================= */
 .game-card-link {
-    display: block; /* Permet au lien de couvrir toute la carte */
-    text-decoration: none; /* Supprime le soulignement */
-    color: inherit; /* Hérite de la couleur du texte */
+  display: block;
+  text-decoration: none;
+  color: inherit;
 }
 
-.game-card-link:hover {
-    text-decoration: none; /* Assure qu'il n'y a pas de soulignement au survol */
-}
+/* Each card gets a color via nth-child */
+.game-card-link:nth-child(4n+1) .game-card-item { --c: var(--yellow); }
+.game-card-link:nth-child(4n+2) .game-card-item { --c: var(--blue); }
+.game-card-link:nth-child(4n+3) .game-card-item { --c: var(--pink); }
+.game-card-link:nth-child(4n+4) .game-card-item { --c: var(--green); }
 
 .game-card-item {
-    width: 130px; /* Largeur fixe */
-    height: 75px; /* Hauteur fixe */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: rgb(66, 49, 12);
-    background-color: rgb(184, 158, 119);
-    border-radius: 5px; /* Ajoute des coins arrondis */
-    margin: 0; /* Supprime les marges inutiles */
-    flex-shrink: 0; /* Empêche les cartes de rétrécir */
-    box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 4px 0px, rgba(0, 0, 0, 0.32) 0px 2px 16px 0px;
-    cursor: pointer; /* Change le curseur pour indiquer une interactivité */
+  position: relative;
+  border-radius: var(--radius);
+  border: var(--border);
+  background: var(--c, var(--yellow));
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  overflow: hidden;
+  aspect-ratio: 3/2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Ajout de l'animation pour le gigotement */
-@keyframes wiggle {
-    0% { transform: rotate(0deg); }
-    25% { transform: rotate(3deg); }
-    50% { transform: rotate(0deg); }
-    75% { transform: rotate(-3deg); }
-    100% { transform: rotate(0deg); }
+/* Decorative inner pattern */
+.game-card-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255,255,255,0.25) 0%, transparent 50%),
+    repeating-linear-gradient(
+      135deg,
+      rgba(0,0,0,0.04) 0px, rgba(0,0,0,0.04) 2px,
+      transparent 2px, transparent 14px
+    );
+  border-radius: inherit;
 }
 
-/* Appliquer l'effet au survol */
+/* Bottom shadow block */
+.game-card-item::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 40%;
+  background: rgba(0,0,0,0.08);
+  border-radius: 0 0 calc(var(--radius) - 4px) calc(var(--radius) - 4px);
+  transition: height 0.2s;
+}
+
 .game-card-item:hover {
-    animation: wiggle 0.3s ease-in-out; /* Durée et type d'animation */
-    cursor: pointer; /* Change le curseur pour indiquer une interactivité */
-    color: rgb(221, 209, 182);
-    background-color: rgb(163, 142, 110);
-    text-decoration: solid underline 4px; /* Ajoute un soulignement au survol */
-
+  transform: translate(-3px, -3px);
+  box-shadow: var(--shadow-lg);
+  animation: wiggle 0.35s ease-in-out;
 }
 
-/* Ajout de l'animation pour le rétrécissement */
-@keyframes shrink {
-    0% { transform: scale(1); }
-    50% { transform: scale(0.9); } /* Rétrécit légèrement */
-    100% { transform: scale(1); } /* Retourne à la taille normale */
-}
-
-/* Appliquer l'effet au clic */
 .game-card-item:active {
-    animation: shrink 0.2s ease-in-out; /* Durée et type d'animation */
-    cursor: pointer; /* Change le curseur pour indiquer une interactivité */
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px var(--ink);
+}
+
+.game-card-item:hover::after {
+  height: 35%;
+}
+
+/* Emoji decoration */
+.card-emoji {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  font-size: 22px;
+  opacity: 0.5;
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.game-card-item:hover .card-emoji {
+  opacity: 1;
+  transform: rotate(15deg) scale(1.2);
 }
 
 .game-name {
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center; /* Centre le texte dans la carte */
-    user-select: none;
+  position: relative;
+  z-index: 2;
+  font-family: var(--font-display);
+  font-size: 22px;
+  color: var(--ink);
+  text-align: center;
+  padding: 0 12px;
+  line-height: 1.2;
+  user-select: none;
+  text-shadow: 1px 1px 0 rgba(255,255,255,0.4);
+  transition: transform 0.2s;
 }
 
-.loading-message {
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-    text-align: center;
-    margin: 20px auto;
-    font-family: Rubik, sans-serif;
+.game-card-item:hover .game-name {
+  transform: scale(1.05);
 }
 
+/* ============================= */
+/* MESSAGES */
+/* ============================= */
+.loading-message,
 .empty-message {
-    color: white;
-    font-size: 14px;
-    text-align: center;
-    margin: 20px auto;
-    font-family: Rubik, sans-serif;
+  grid-column: 1/-1;
+  text-align: center;
+  padding: 40px;
+  font-family: var(--font-fun);
+  font-size: 18px;
+  color: #888;
+  background: rgba(0,0,0,0.04);
+  border: 3px dashed rgba(0,0,0,0.15);
+  border-radius: var(--radius);
+}
+
+/* ============================= */
+/* FOOTER */
+/* ============================= */
+.footer {
+  text-align: center;
+  padding: 24px;
+  font-family: var(--font-fun);
+  font-size: 14px;
+  color: #aaa;
+  border-top: 3px dashed rgba(0,0,0,0.1);
+}
+
+/* ============================= */
+/* ANIMATIONS */
+/* ============================= */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
+}
+
+@keyframes wiggle {
+  0%   { transform: rotate(0deg); }
+  20%  { transform: rotate(4deg); }
+  40%  { transform: rotate(-4deg); }
+  60%  { transform: rotate(2deg); }
+  80%  { transform: rotate(-2deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes pop-in {
+  from { opacity: 0; transform: scale(0.7) rotate(-4deg); }
+  to   { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+/* Staggered entrance for cards */
+.game-card-link {
+  animation: pop-in 0.4s ease both;
+}
+.game-card-link:nth-child(1) { animation-delay: 0.05s; }
+.game-card-link:nth-child(2) { animation-delay: 0.10s; }
+.game-card-link:nth-child(3) { animation-delay: 0.15s; }
+.game-card-link:nth-child(4) { animation-delay: 0.20s; }
+.game-card-link:nth-child(5) { animation-delay: 0.25s; }
+.game-card-link:nth-child(6) { animation-delay: 0.30s; }
+.game-card-link:nth-child(7) { animation-delay: 0.35s; }
+.game-card-link:nth-child(8) { animation-delay: 0.40s; }
+
+/* ============================= */
+/* RESPONSIVE */
+/* ============================= */
+@media (max-width: 480px) {
+  .hero-title { font-size: 36px; }
+  .logo       { font-size: 72px; }
+  .games-list { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .stats-bar  { gap: 10px; }
 }

@@ -1,34 +1,95 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link rel="stylesheet" type="text/css" href="CSS/index.css">
+<title>🎮 Game Hub</title>
 
-        <link rel="icon" href="IMG/ICO/ICO.ico">
-        <title>Games</title>
-    </head>
-    <body>
+<link rel="icon" href="IMG/ICO/Favicon.ico">
+<link rel="stylesheet" href="CSS/index.css">
+<style>
 
-        <!-- Section pour les animés -->
-        <div id="games-container">
-            <div class="catalog-contents">
-                <h2 class="catalog-title">⬥ Games</h2> 
-                <div class="seperator"></div>
-                <div class="games-list">
-                    <a href="CodeNames.html" class="game-card-link">
-                        <div class="game-card-item">
-                            <div class="game-card">
-                                <p class="game-name">CodeNames</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
+</style>
+</head>
 
-        <script src="JS/IndexScript.js"></script>
-    </body>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-contents">
+    <div class="header-left">
+      <span class="header-icon">🕹️</span>
+      <h1 class="header-title">GAME HUB</h1>
+    </div>
+    <span class="header-badge">✦ MES CRÉATIONS ✦</span>
+    <div class="header-stars">⭐⭐⭐⭐⭐</div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-shapes">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+  </div>
+
+  <div class="logo-container">
+    <div class="logo" title="clique !">🎲</div>
+    <div class="logo-ring"></div>
+  </div>
+
+  <h2 class="hero-title">
+    <span>G</span><span>A</span><span>M</span><span>E</span>&nbsp;HUB
+  </h2>
+  <p class="hero-sub">✦ Ma bibliothèque de jeux web ✦</p>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-pill">
+    <span class="stat-icon">🎮</span>
+    <span><span class="stat-val" id="game-count">1</span> jeu</span>
+  </div>
+  <div class="stat-pill">
+    <span class="stat-icon">🛠️</span>
+    <span>100% <span class="stat-val">Fait maison</span></span>
+  </div>
+  <div class="stat-pill">
+    <span class="stat-icon">✨</span>
+    <span>Version <span class="stat-val">2026</span></span>
+  </div>
+</div>
+
+<!-- CATALOG -->
+<main id="games-container">
+  <div class="catalog-header">
+    <h2 class="catalog-title">🎯 Catalogue</h2>
+    <span class="catalog-title-pill">Tous les jeux</span>
+  </div>
+  <div class="catalog-divider"></div>
+
+  <div class="games-list">
+
+    <a href="Games/CodeNames.html" class="game-card-link">
+      <div class="game-card-item">
+        <span class="card-emoji">🕵🏽</span>
+        <span class="game-name">CodeNames</span>
+      </div>
+    </a>
+
+    <!-- Ajoute tes prochains jeux ici ! -->
+
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  🎨 KOLA &nbsp;·&nbsp; Game Hub 2025
+</footer>
+
+<script src="JS/IndexScript.js"></script>
+
+</body>
 </html>

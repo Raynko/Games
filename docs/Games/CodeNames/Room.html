@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CodeNames — Salle</title>
+<link rel="icon" href="/IMG/ICO/Favicon.ico">
+<link rel="stylesheet" type="text/css" href="/CSS/codenames.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <a href="/Games/CodeName.html" class="back-btn">LOBBY</a>
+    <div class="header-logo">CODE<span>NAMES</span></div>
+    <div class="header-classify">TOP SECRET</div>
+  </div>
+</header>
+
+<!-- ROOM TITLE BANNER -->
+<div class="room-banner">
+  <div class="room-banner-inner">
+    <div class="room-banner-left">
+      <span class="room-banner-label">SALLE EN COURS</span>
+      <h2 class="room-banner-name" id="room-title">OPÉRATION ???</h2>
+    </div>
+    <div class="room-banner-right">
+      <span class="room-mode-badge" id="room-mode-badge">CO-OP</span>
+      <span class="room-player-count"><span id="player-count">1</span> agent(s)</span>
+    </div>
+  </div>
+</div>
+
+<!-- DIVIDER -->
+<div class="divider">
+  <div class="divider-line"></div>
+  <span class="divider-label">◆ AGENTS ◆</span>
+  <div class="divider-line"></div>
+</div>
+
+<!-- JOUEURS -->
+<section class="section">
+  <p class="section-label">01 — Agents dans la salle</p>
+
+  <!-- Sélecteur de rôle pour MOI -->
+  <div class="my-role-selector" id="my-role-selector">
+    <p class="my-role-label">VOTRE RÔLE</p>
+    <div class="role-btns" id="role-btns">
+      <!-- Injecté par JS selon le mode -->
+    </div>
+    <!-- Sélecteur d'équipe (duel uniquement) -->
+    <div class="team-selector-row" id="team-selector-row" style="display:none">
+      <button class="team-btn red" onclick="selectTeam('red', this)">🔴 ROUGE</button>
+      <button class="team-btn blue" onclick="selectTeam('blue', this)">🔵 BLEU</button>
+    </div>
+  </div>
+
+  <!-- Liste des joueurs -->
+  <div class="players-list" id="players-list">
+    <!-- Injecté par JS -->
+  </div>
+</section>
+
+<!-- DIVIDER -->
+<div class="divider">
+  <div class="divider-line"></div>
+  <span class="divider-label">◆ OPTIONS ◆</span>
+  <div class="divider-line"></div>
+</div>
+
+<!-- OPTIONS ACCORDÉON -->
+<section class="section">
+  <button class="accordion-toggle" onclick="toggleAccordion()" id="accordion-btn">
+    <span>⚙ OPTIONS DE LA SALLE</span>
+    <span class="accordion-arrow" id="accordion-arrow">▼</span>
+  </button>
+
+  <div class="accordion-body" id="accordion-body">
+    <div class="settings-grid">
+
+      <div class="setting-item">
+        <p class="setting-label">LANGUE DU LEXIQUE</p>
+        <div class="setting-options">
+          <button class="opt-btn active" onclick="toggle(this)">🇫🇷 FR</button>
+          <button class="opt-btn" onclick="toggle(this)" disabled>🇬🇧 EN</button>
+          <button class="opt-btn" onclick="toggle(this)" disabled>🌐 MIX</button>
+        </div>
+      </div>
+
+      <div class="setting-item">
+        <p class="setting-label">DIFFICULTÉ</p>
+        <div class="setting-options">
+          <button class="opt-btn" onclick="toggle(this)">RECRUE</button>
+          <button class="opt-btn active" onclick="toggle(this)">AGENT</button>
+          <button class="opt-btn" onclick="toggle(this)">VÉTÉRAN</button>
+        </div>
+      </div>
+
+      <div class="setting-item">
+        <p class="setting-label">MOTS SUR LE PLATEAU</p>
+        <div class="range-row">
+          <span class="range-val" id="words-val">25</span>
+          <input type="range" min="15" max="35" value="25" step="5"
+            oninput="document.getElementById('words-val').textContent = this.value" />
+        </div>
+      </div>
+
+      <div class="setting-item">
+        <p class="setting-label">TEMPS PAR TOUR (sec)</p>
+        <div class="range-row">
+          <span class="range-val" id="time-val">60</span>
+          <input type="range" min="30" max="120" value="60" step="15"
+            oninput="document.getElementById('time-val').textContent = this.value" />
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- LAUNCH -->
+<div class="launch-section">
+  <button class="launch-btn" onclick="launch()">
+    <span class="launch-icon">✦</span>
+    LANCER LA MISSION
+    <span class="launch-icon">✦</span>
+  </button>
+  <p class="launch-sub" id="launch-sub">⌛ EN ATTENTE DE CONFIRMATION DE L'AGENT</p>
+</div>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-text">TRANSMISSION SÉCURISÉE</span><span class="ticker-sep">◆</span>
+    <span class="ticker-text">AGENTS EN ATTENTE</span><span class="ticker-sep">◆</span>
+    <span class="ticker-text">RÉSEAU OPÉRATIONNEL</span><span class="ticker-sep">◆</span>
+    <span class="ticker-text">CODES CHIFFRÉS</span><span class="ticker-sep">◆</span>
+    <span class="ticker-text">MISSION EN COURS</span><span class="ticker-sep">◆</span>
+    <span class="ticker-text">TRANSMISSION SÉCURISÉE</span><span class="ticker-sep">◆</span>
+    <span class="ticker-text">AGENTS EN ATTENTE</span><span class="ticker-sep">◆</span>
+    <span class="ticker-text">RÉSEAU OPÉRATIONNEL</span><span class="ticker-sep">◆</span>
+    <span class="ticker-text">CODES CHIFFRÉS</span><span class="ticker-sep">◆</span>
+    <span class="ticker-text">MISSION EN COURS</span><span class="ticker-sep">◆</span>
+  </div>
+</div>
+
+<script src="/JS/CodeNamesScript.js"></script>
+</body>
+</html>

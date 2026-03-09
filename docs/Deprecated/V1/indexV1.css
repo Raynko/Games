@@ -1,0 +1,335 @@
+/* ============================= */
+/* FONTS */
+/* ============================= */
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Rubik:wght@400;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Palanquin+Dark&display=swap');
+
+/* ============================= */
+/* VARIABLES */
+/* ============================= */
+
+:root {
+    /* Fonts */
+    --font-main: "Rubik", sans-serif;
+    --font-accent: "Montserrat", sans-serif;
+    --font-lexend: "Lexend", sans-serif;
+
+    /* Background */
+    --bg-color: #505674;
+    --bg-pattern-dark: #163857;
+    --bg-pattern-size: 64px;
+
+    /* Header */
+    --header-bg: #07090e;
+    --header-border: #3d4891;
+    --header-title-size: 26px;
+    --header-desc-size: 15px;
+    --header-desc-color: rgb(184, 180, 72);
+
+    /* Text */
+    --text-light: #ffffff;
+
+    /* Containers */
+    --container-bg: rgba(0, 0, 0, 0.45);
+    --container-radius: 5px;
+
+    /* Game list */
+    --list-bg: rgba(255, 255, 255, 0.16);
+    --card-width: 130px;
+    --card-height: 75px;
+
+    /* Card colors */
+    --card-bg: rgb(184, 158, 119);
+    --card-bg-hover: rgb(163, 142, 110);
+    --card-text: rgb(66, 49, 12);
+    --card-text-hover: rgb(221, 209, 182);
+
+    /* Shadows */
+    --shadow-soft:
+        rgba(0,0,0,0.12) 0px 2px 4px,
+        rgba(0,0,0,0.32) 0px 2px 16px;
+
+    --shadow-container:
+        rgba(0,0,0,0.37) 0px 2px 4px,
+        rgba(255,255,255,0.11) 0px 2px 16px;
+
+}
+
+/* ============================= */
+/* RESET */
+/* ============================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ============================= */
+/* BODY */
+/* ============================= */
+
+body {
+    font-family: var(--font-main);
+
+    background:
+        repeating-conic-gradient(
+            from 45deg,
+            var(--bg-pattern-dark) 0% 25%,
+            var(--bg-color) 0% 50%
+        );
+
+    background-size: var(--bg-pattern-size) var(--bg-pattern-size);
+    background-color: var(--bg-color);
+
+}
+
+/* ============================= */
+/* HEADER */
+/* ============================= */
+
+.header {
+    user-select: none;
+    border-bottom: 5px solid var(--header-border);
+}
+
+.header-contents {
+    display: flex;
+    align-items:baseline;
+
+    padding: 10px;
+
+    background: var(--header-bg);
+}
+
+.header-title {
+    color: var(--text-light);
+    font-size: var(--header-title-size);
+    margin-left: 10px;
+}
+
+.header-desc {
+    color: var(--header-desc-color);
+    font-size: var(--header-desc-size);
+    margin-left: 10px;
+    font-family: var(--font-accent);
+}
+
+/* ============================= */
+/* LOGO */
+/* ============================= */
+
+.logo {
+    font-size: 80px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 100px;
+
+    text-align: center;
+
+    user-select: none;
+
+}
+
+.logo:hover {
+    animation: wiggle .3s ease-in-out;
+    cursor: pointer;
+}
+
+.logo:active {
+    animation: shrink .2s ease-in-out;
+}
+
+/* ============================= */
+/* GAMES CONTAINER */
+/* ============================= */
+
+#games-container {
+    margin-top: 30px;
+    font-family: var(--font-lexend);
+}
+
+.catalog-contents {
+    max-width: 810px;
+    margin: auto;
+
+    padding: 20px;
+
+    background: var(--container-bg);
+    border-radius: var(--container-radius);
+
+    box-shadow: var(--shadow-container);
+}
+
+.catalog-title {
+    color: var(--text-light);
+    font-size: 22px;
+    font-weight: bold;
+
+    margin-bottom: -5px;
+
+    user-select: none;
+
+}
+
+.seperator {
+    margin: 20px 0;
+
+    border: 3px solid white;
+    border-radius: var(--container-radius);
+}
+
+
+/* ============================= */
+/* GAME LIST */
+/* ============================= */
+
+.games-list {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 20px;
+
+    justify-content: flex-start;
+
+    padding: 20px;
+
+    max-width: 800px;
+
+    background: var(--list-bg);
+    border-radius: var(--container-radius);
+
+    box-shadow: var(--shadow-soft);
+}
+
+
+/* ============================= */
+/* GAME CARD */
+/* ============================= */
+
+.game-card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.game-card-item {
+    width: var(--card-width);
+    height: var(--card-height);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    background: black;
+
+    border-radius: var(--container-radius);
+
+    box-shadow: var(--shadow-soft);
+
+    cursor: pointer;
+
+    position: relative;
+}
+
+.game-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.game-card-front {
+    position: absolute;
+    inset: 0;
+
+    background: var(--card-bg);
+    border-radius: var(--container-radius);
+
+    transform: translateY(-6px);
+    transition: transform .1s ease;
+}
+
+.game-name {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 100%;
+
+    font-family: var(--font-lexend);
+    font-size: 16px;
+    font-weight: 1000;
+
+    color: var(--card-text);
+
+    user-select: none;
+}
+
+.game-card-item:hover {
+    animation: wiggle .3s ease-in-out;
+}
+
+.game-card-item:hover .game-name {
+    color: var(--card-text-hover);
+    text-decoration: underline 4px;
+}
+
+.game-card-item:active {
+    animation: shrink .2s ease-in-out;
+}
+
+.game-card-item:active .game-card-front {
+    transform: translateY(-1px);
+}
+
+/* ============================= */
+/* MESSAGES */
+/* ============================= */
+
+.loading-message {
+    color: var(--text-light);
+
+    font-size: 18px;
+    font-weight: bold;
+
+    text-align: center;
+
+    margin: 20px auto;
+}
+
+.empty-message {
+    color: var(--text-light);
+
+    font-size: 14px;
+
+    text-align: center;
+
+    margin: 20px auto;
+}
+
+/* ============================= */
+/* ANIMATIONS */
+/* ============================= */
+
+@keyframes wiggle {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(3deg); }
+    50% { transform: rotate(0deg); }
+    75% { transform: rotate(-3deg); }
+    100% { transform: rotate(0deg); }
+}
+
+@keyframes shrink {
+    0% { transform: scale(1); }
+    50% { transform: scale(.9); }
+    100% { transform: scale(1); }
+}

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CodeNames — Lobby</title>
+
+<link rel="icon" href="/IMG/ICO/Favicon.ico">
+<link rel="stylesheet" type="text/css" href="/CSS/codenames.css">  
+<style>
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <a href="/index.html" class="back-btn">GAME HUB</a>
+    <div class="header-logo">CODE<span>NAMES</span></div>
+    <div class="header-classify">TOP SECRET</div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="briefing-hero">
+  <div class="hero-left">
+    <div class="classified-stamp">⛌ CLASSIFIÉ</div>
+    <h1 class="hero-title">
+      <span class="t-red">CODE</span><br>
+      <span class="t-gold">NAMES</span>
+    </h1>
+    <p class="hero-sub">
+      PROTOCOLE D'INITIALISATION<br>
+      CRÉEZ VOTRE SALLE D'OPÉRATION<br>
+      <span class="blink">█</span> EN ATTENTE D'AGENTS...
+    </p>
+  </div>
+
+  <div class="agent-card">
+    <span class="agent-avatar">🕵️</span>
+    <p class="agent-codename">VOTRE NOM DE CODE</p>
+    <input
+      class="agent-name-input"
+      type="text"
+      maxlength="12"
+      placeholder="AGENT_???"
+      id="agent-name"
+      defaultValue="AGENT_???"
+    />
+    <button class="agent-save-btn" onclick="saveName()">OK</button>
+  </div>
+</section>
+
+<!-- DIVIDER -->
+<div class="divider">
+  <div class="divider-line"></div>
+  <span class="divider-label">◆ SALLES ◆</span>
+  <div class="divider-line"></div>
+</div>
+
+<!-- ROOMS LIST -->
+<section class="section">
+  <p class="section-label">01 — Rejoindre ou créer une salle</p>
+  <div class="rooms-wrapper">
+    <div class="rooms-list" id="rooms-list">
+
+      <!-- Bouton créer -->
+      <div class="room-card-item create-btn" onclick="openModal()" title="Nouvelle salle">
+        <span class="room-create-icon">+</span>
+        <span class="room-create-label">CRÉER</span>
+      </div>
+
+<!-- Salles existantes (exemples) 
+      <div class="room-card-item blue-team" onclick="joinRoom('OPÉRATION 01', 'coop')" style="animation-delay:.1s" title="Rejoindre">
+        <span class="room-num">01</span>
+        <span class="room-status wait">ATTENTE</span>
+      </div>
+
+      <div class="room-card-item red-team" onclick="joinRoom('OPÉRATION 02', 'duel')" style="animation-delay:.2s" title="Rejoindre">
+        <span class="room-num">02</span>
+        <span class="room-status live">● LIVE</span>
+      </div>
+
+      <div class="room-card-item" onclick="joinRoom('OPÉRATION 03', 'coop')" style="animation-delay:.3s" title="Rejoindre">
+        <span class="room-num">03</span>
+        <span class="room-status wait">ATTENTE</span>
+      </div>
+-->
+    </div>
+  </div>
+</section>
+
+<!-- DIVIDER -->
+<div class="divider">
+  <div class="divider-line"></div>
+</div>
+
+<!-- MODAL CREATE ROOM -->
+<div class="modal-overlay" id="modal" onclick="closeOnOverlay(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 class="modal-title">◆ NOUVELLE SALLE</h3>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+
+    <div class="modal-field">
+      <label class="modal-label">NOM DE LA SALLE</label>
+      <input class="modal-input" type="text" maxlength="16" placeholder="OPERATION_???" id="room-name-input" />
+    </div>
+
+        <!-- Choix du mode -->
+    <div class="modal-field">
+      <label class="modal-label">MODE OPÉRATOIRE</label>
+      <div class="mode-grid modal-mode-grid">
+
+        <button class="mode-btn active" onclick="selectModalMode(this, 'coop')">
+          <span class="mode-check">✦</span>
+          <span class="mode-icon">🤝</span>
+          <div class="mode-name">CO-OP</div>
+          <div class="mode-desc">TOUS ENSEMBLE<br>Trouvez les mots</div>
+        </button>
+
+        <button class="mode-btn" onclick="selectModalMode(this, 'duel')" disabled>
+          <span class="mode-check">✦</span>
+          <span class="mode-icon">⚔️</span>
+          <div class="mode-name">DUEL</div>
+          <div class="mode-desc">ROUGE vs BLEU<br>Bientôt disponible</div>
+        </button>
+
+        <button class="mode-btn" onclick="selectModalMode(this, 'hardcore')" disabled>
+          <span class="mode-check">✦</span>
+          <span class="mode-icon">💀</span>
+          <div class="mode-name">HARDCORE</div>
+          <div class="mode-desc">Mode extrême<br>Bientôt disponible</div>
+        </button>
+
+      </div>
+    </div>
+
+    <button class="modal-confirm" onclick="createRoom()">CONFIRMER ✦</button>
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-text">TRANSMISSION SÉCURISÉE</span><span class="ticker-sep">◆</span>
+    <span class="ticker-text">AGENTS EN ATTENTE</span><span class="ticker-sep">◆</span>
+    <span class="ticker-text">RÉSEAU OPÉRATIONNEL</span><span class="ticker-sep">◆</span>
+    <span class="ticker-text">CODES CHIFFRÉS</span><span class="ticker-sep">◆</span>
+    <span class="ticker-text">MISSION EN COURS</span><span class="ticker-sep">◆</span>
+    <span class="ticker-text">TRANSMISSION SÉCURISÉE</span><span class="ticker-sep">◆</span>
+    <span class="ticker-text">AGENTS EN ATTENTE</span><span class="ticker-sep">◆</span>
+    <span class="ticker-text">RÉSEAU OPÉRATIONNEL</span><span class="ticker-sep">◆</span>
+    <span class="ticker-text">CODES CHIFFRÉS</span><span class="ticker-sep">◆</span>
+    <span class="ticker-text">MISSION EN COURS</span><span class="ticker-sep">◆</span>
+  </div>
+</div>
+
+<script src="/JS/CodeNamesScript.js"></script>
+
+</body>
+</html>
